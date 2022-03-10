@@ -8,6 +8,7 @@ import { templateService } from './template-service.js'
 async function onInit() {
     try {
         const templates = await templateService.getTamplates();
+        console.log(templates);
         renderTemplates(templates);
     } catch (err) {
         console.log(err);
@@ -17,7 +18,11 @@ async function onInit() {
 function renderTemplates(templates) {
     document.querySelector('.recommendations').innerHTML = templates.map((temp) => {
         return `<article class="recommendation">
-                    <div class="name">${temp.name}</div>
+                    <div>
+                        <div class="img" style="background-image: url(${temp.thumbnail[0].url})">
+                        </div>
+                        <div class="name">${temp.name}</div>
+                    </div>
                 </article>`
     }).join('');
 }

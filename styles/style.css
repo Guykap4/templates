@@ -1,0 +1,67 @@
+/* BASE */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: inherit;
+}
+
+/* components */
+
+.recommend-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.recommend-container .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.recommend-container .header .logo {
+    height: 11px;
+    width: 76px;
+    background-image: url(//cdn.taboola.com/static/f8/f89e1763-220d-4e09-ba69-9e040548fb7a.svg);
+}
+
+.recommendations {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+article {   
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3 /4;
+}
+
+article .img {
+    width: 100%;
+    height: 172px;
+    background-position: center;
+    background-size: contain;
+}
+
+/* article::before {
+    display: block;
+    content: "";
+    width: 100%;
+}
+
+article::before > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+} */
