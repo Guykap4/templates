@@ -1,16 +1,23 @@
 import { templateService } from './template-service.js'
 
 // making sure body is loaded before running the script
-(function() {
-    console.log('here!');
+(function () {
     document.body.onload = onInit;
 })()
 
-
-function onInit() {
-    templateService.getTamplates(renderTemplates);
+async function onInit() {
+    try {
+        const templates = await templateService.getTamplates();
+        renderTemplates(templates);
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 function renderTemplates(templates) {
-    console.log(JSON.parse(templates));
+    document.querySelector('.recommendations').innerHTML = templates.map((temp) => {
+        return `<article class="recommendation">
+                    <div class="name">${temp.name}</div>
+                </article>`
+    }).join('');
 }
