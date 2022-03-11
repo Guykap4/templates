@@ -50,7 +50,14 @@ a:visited {
 .recommend-container .header .logo {
     height: 11px;
     width: 76px;
+    margin: 0 16px;
     background-image: url(//cdn.taboola.com/static/f8/f89e1763-220d-4e09-ba69-9e040548fb7a.svg);
+}
+
+@media (min-width: 450px) {
+    .recommend-container .header .logo {
+        margin: 0;
+    }
 }
 
 .recommendations {
@@ -87,11 +94,11 @@ article .img {
 
 .info {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     gap: 8px;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.87);
-    padding: 0 8px;
+    padding: 0 16px;
     font-family: unify-sans-bold;
 }
 
@@ -109,4 +116,8 @@ article .img {
 
 a:hover article .info span:nth-of-type(1) {
     text-decoration: underline;
+}
+
+.info span:nth-of-type(2)::after {
+    content: '| Ad';
 }

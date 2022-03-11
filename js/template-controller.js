@@ -1,26 +1,23 @@
-import { templateService } from './template-service.js'
+import { templateService } from './services/template-service.js'
 
 // making sure body is loaded before running the script
 (function () {
     document.body.onload = onInit;
 })()
 
-async function onInit() {
-    try {
-        const templates = await templateService.getTamplates();
-        console.log(templates);
-        renderTemplates(templates);
-    } catch (err) {
-        console.log(err);
-    }
+function onInit() {
+    templateService.getTamplates(renderTemplates);
 }
 
-function renderTemplates(templates) {
+function renderTemplates(res) {
+    if (!res.data) return
+    const templates = res.data?.list
+    console.log(templates);
     document.querySelector('.recommendations').innerHTML = templates.map((temp) => {
-        return `<a href="${temp.url}">
+        return `<a href="${temp.url}" target="_blank">
                     <article class="recommendation">
                         <div>
-                            <div class="img" style="background-image: url(${temp.thumbnail[0].url})">
+                            <div class="img" style="background-image: url(${temp.thumbnail[0].url}), url(../../assets/imgs/default.jpg)">
                             </div>
                             <div class="info">
                                 <span>${temp.name}</span>
