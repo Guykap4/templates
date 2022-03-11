@@ -24,6 +24,16 @@ a:visited {
     color: inherit;
 }
 
+/* HELPERS */
+
+.hide {
+    display: none;
+}
+
+.flex {
+    display: flex;
+}
+
 /* components */
 
 .recommend-container {
@@ -120,4 +130,22 @@ a:hover article .info span:nth-of-type(1) {
 
 .info span:nth-of-type(2)::after {
     content: '| Ad';
+}
+
+.error-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    
+}
+
+.error-container button {
+    border: none;
+    background-color: #154C91;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #FFF;
+    font-family: unify-sans;
 }

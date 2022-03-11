@@ -6,12 +6,21 @@ import { templateService } from './services/template-service.js'
 })()
 
 function onInit() {
+    onGetTemplates();
+}
+
+function onGetTemplates() {
     templateService.getTamplates(renderTemplates);
 }
 
 function renderTemplates(res) {
-    if (!res.data) return
-    const templates = res.data?.list
+    if (!res.data && !res.err) return
+    else if (res.err) {
+        renderError();
+        return;
+    }
+    document.querySelector('.error-container').style.display = 'none'
+    const templates = res.data.list
     console.log(templates);
     document.querySelector('.recommendations').innerHTML = templates.map((temp) => {
         return `<a href="${temp.url}" target="_blank">
@@ -27,4 +36,11 @@ function renderTemplates(res) {
                         </article>
                     </a>`
     }).join('');
+}
+
+function renderError() {
+    const elErrContainer = document.querySelector('.error-container');
+    const elBtn = elErrContainer.querySelector('button');
+    elBtn.onclick = onGetTemplates;
+    elErrContainer.style.display = 'flex'
 }

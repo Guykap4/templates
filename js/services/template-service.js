@@ -14,10 +14,10 @@ function getTamplates(cb, count = 8) {
     const queryParams = {
         'app.type': appType,
         'app.apikey': apiKey,
-        count,
         'source.type': sourceType,
         'source.id': sourceId,
         'source.url': sourceUrl,
+        count,
     }
     httpService.get('1.0/json/taboola-templates/recommendations.get', queryParams, cb)
 }
