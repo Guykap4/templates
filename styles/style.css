@@ -1,8 +1,19 @@
 /* BASE */
 
+@font-face {
+    font-family: unify-sans;
+    src: url(./fonts/UnifySans-Regular.ttf);
+}
+
+@font-face {
+    font-family: unify-sans-bold;
+    src: url(./fonts/UnifySans-Bold.ttf);
+}
+
 body {
     margin: 0;
     padding: 0;
+    font-family: unify-sans;
 }
 
 a {
@@ -18,6 +29,15 @@ a:visited {
 .recommend-container {
     display: flex;
     flex-direction: column;
+    margin: auto;
+    padding-top: 16px;
+}
+
+@media (min-width: 450px) {
+    .recommend-container {
+        padding: 16px;
+        max-width: 900px;
+    }
 }
 
 .recommend-container .header {
@@ -39,29 +59,54 @@ a:visited {
     gap: 16px;
 }
 
-article {   
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 3 /4;
+article {
+    width: 100%;
+    height: 300px;
+}
+
+@media (min-width: 480px) {
+    article {
+        height: 270px;
+    }
 }
 
 article .img {
     width: 100%;
-    height: 172px;
+    height: 220px;
     background-position: center;
-    background-size: contain;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom: 8px;
 }
 
-/* article::before {
-    display: block;
-    content: "";
-    width: 100%;
+@media (min-width: 480px) {
+    article .img {
+        height: 180px;
+    }
 }
 
-article::before > * {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-} */
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+    padding: 0 8px;
+    font-family: unify-sans-bold;
+}
+
+@media (min-width: 450px) {
+    .info {
+        padding: unset;
+    }
+}
+
+.info .publisher {
+    color: #626262;
+    font-size: 12px;
+    font-family: unify-sans;
+}
+
+a:hover article .info span:nth-of-type(1) {
+    text-decoration: underline;
+}

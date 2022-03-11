@@ -17,12 +17,17 @@ async function onInit() {
 
 function renderTemplates(templates) {
     document.querySelector('.recommendations').innerHTML = templates.map((temp) => {
-        return `<article class="recommendation">
-                    <div>
-                        <div class="img" style="background-image: url(${temp.thumbnail[0].url})">
+        return `<a href="${temp.url}">
+                    <article class="recommendation">
+                        <div>
+                            <div class="img" style="background-image: url(${temp.thumbnail[0].url})">
+                            </div>
+                            <div class="info">
+                                <span>${temp.name}</span>
+                                <span class="publisher">${temp.branding}<span>
+                            </div>
                         </div>
-                        <div class="name">${temp.name}</div>
-                    </div>
-                </article>`
+                        </article>
+                    </a>`
     }).join('');
 }
