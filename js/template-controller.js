@@ -1,9 +1,16 @@
-import { templateService } from './services/template-service.js'
+import { templateService } from './services/template-service.js';
+
+export const mainJS = {
+    onInit,
+    onGetTemplates,
+    renderTemplates,
+    renderError,
+};
 
 // making sure body is loaded before running the script
 (function () {
     document.body.onload = onInit;
-})()
+})();
 
 function onInit() {
     onGetTemplates();
@@ -21,7 +28,6 @@ function renderTemplates(res) {
     }
     document.querySelector('.error-container').style.display = 'none'
     const templates = res.data.list
-    console.log(templates);
     document.querySelector('.recommendations').innerHTML = templates.map((temp) => {
         return `<a href="${temp.url}" target="_blank">
                     <article class="recommendation">
