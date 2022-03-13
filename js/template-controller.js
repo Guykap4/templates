@@ -44,7 +44,7 @@ function renderTemplates(res) {
                     </a>`
     }).join('');
     elContainer.querySelectorAll('img').forEach(elImg => {
-        elImg.onerror = () => { onImgError(elImg); elImg.onerror = null; }
+        elImg.onerror = () => { elImg.onerror = null; elImg.src = "assets/imgs/default.jpg" }
     })
 }
 
@@ -53,8 +53,4 @@ function renderError() {
     const elBtn = elErrContainer.querySelector('button');
     elBtn.onclick = onGetTemplates;
     elErrContainer.style.display = 'flex'
-}
-
-function onImgError(elImg) {
-    elImg.src = "../assets/imgs/default.jpg"
 }
