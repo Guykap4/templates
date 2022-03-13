@@ -1,5 +1,6 @@
 import { mainJs } from './template-controller.js'
 import { jest } from '@jest/globals'
+import { templateService } from './services/template-service.js'
 
 describe('main file testing', () => {
 
@@ -195,10 +196,16 @@ describe('main file testing', () => {
         }
     }
 
-    const badRequestRes = {
-        data: null,
-        err: 'err'
-    }
+    test('cb onSuccess is called call succesfull', done => {
+        const mockOnSuccess = jest.fn(() => { })
+        function onSuccess() {
+            mockOnSuccess();
+            expect(mockOnSuccess).toBeCalled();
+            done();
+        }
+
+        templateService.getTemplates({ onSuccess })
+    })
 
     test('renders 8 widgets when got 8', () => {
         mainJs.renderTemplates(requestRes);
@@ -212,8 +219,8 @@ describe('main file testing', () => {
             .toBe(4)
     })
 
-    test('showing error container when bad request', () => {
-        mainJs.renderTemplates(badRequestRes);
+    test('showing error container when error', () => {
+        mainJs.renderError();
         expect(document.querySelector('.error-container').style.display)
             .toBe('flex')
     })

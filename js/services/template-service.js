@@ -5,7 +5,7 @@ export const templateService = {
     getTemplates,
 }
 
-function getTemplates(cb, count = 8) {
+function getTemplates(cbs, count = 8) {
     const queryParams = {
         'app.type': config.appType,
         'app.apikey': config.apiKey,
@@ -14,5 +14,5 @@ function getTemplates(cb, count = 8) {
         'source.url': config.sourceUrl,
         count,
     }
-    httpService.get('1.0/json/taboola-templates/recommendations.get', queryParams, cb)
+    httpService.get('1.0/json/taboola-templates/recommendations.get', queryParams, cbs)
 }

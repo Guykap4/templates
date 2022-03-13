@@ -4,11 +4,11 @@ export const httpService = {
 
 const BASE_URL = 'https://api.taboola.com'
 
-function get(endpoint, params, cb) {
-    XMLReq(endpoint, 'GET', params, cb)
+function get(endpoint, params, cbs) {
+    XMLReq(endpoint, 'GET', params, cbs)
 }
 
-function XMLReq(endpoint, method = 'GET', params, cb, body) {
+function XMLReq(endpoint, method = 'GET', params, cbs, body) {
 
     const req = new XMLHttpRequest();
     const urlParams = new URLSearchParams(params).toString();
@@ -16,16 +16,19 @@ function XMLReq(endpoint, method = 'GET', params, cb, body) {
     // const url = 'making an error'
     const reqInfo = { data: null, err: null }
 
+    console.log(url);
+
     req.onreadystatechange = () => {
         if (req.readyState === XMLHttpRequest.DONE) {
             if (req.status === 200) {
                 reqInfo.data = JSON.parse(req.responseText);
-            } else {
+                cbs.onSuccess(reqInfo);
+            } else if (new RegExp(/4\d\d/).test(req.status)) {
                 console.log(`error in ${method} to ${url}`);
                 reqInfo.err = req.statusText;
+                cbs.onFail(reqInfo)
             }
         }
-        cb(reqInfo);
     }
     req.open(method, url);
     method === 'GET' ? req.send() : req.send(JSON.stringify(body))

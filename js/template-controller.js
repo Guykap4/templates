@@ -17,27 +17,20 @@ function onInit() {
 }
 
 function onGetTemplates() {
-    templateService.getTemplates(renderTemplates);
+    // object containing the success and failure
+    templateService.getTemplates({ onSuccess: renderTemplates, onFail: renderError });
 }
 
 function renderTemplates(res) {
-    if (!res.data && !res.err) return
-    else if (res.err) {
-        renderError();
-        return;
-    }
     document.querySelector('.error-container').style.display = 'none'
     const templates = res.data.list
     const elContainer = document.querySelector('.recommendations');
 
-    // maybe rell?
-    // request status
-    // oneMouseEnter
-    
     let htmlStr = ''
     templates.map((temp) => {
+        const categories = temp.categories[0];
         htmlStr += `<a href="${temp.url}" target="_blank">
-                    <article class="recommendation">
+                    <article data-categories="${categories}" class="recommendation">
                         <div>
                             <img onerror="() => this.onerror = null; this.src='assets/imgs/default.jpg'" src="${temp.thumbnail[0].url}">
                             </div>
@@ -50,6 +43,9 @@ function renderTemplates(res) {
                     </a>`
     });
     elContainer.innerHTML = htmlStr;
+
+    // optional - register users article prefs
+    // assignArticleMouseEv();
 }
 
 function renderError() {
@@ -57,4 +53,21 @@ function renderError() {
     const elBtn = elErrContainer.querySelector('button');
     elBtn.onclick = onGetTemplates;
     elErrContainer.style.display = 'flex'
+}
+
+function assignArticleMouseEv() {
+    let timeoutId;
+    document.querySelectorAll('.recommendations article').forEach(template => {
+        template.onmouseenter = () => {
+            timeoutId = setTimeout(() => {
+                let userPrefs = JSON.parse(sessionStorage.getItem('userPrefs'));
+                userPrefs ? userPrefs.push(template.dataset.categories) : userPrefs = [template.dataset.categories]
+                sessionStorage.setItem('userPrefs', JSON.stringify(userPrefs));
+            }, 5000)
+        }
+
+        template.onmouseleave = () => {
+            clearTimeout(timeoutId);
+        }
+    })
 }
