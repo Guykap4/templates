@@ -44,7 +44,7 @@ function renderTemplates(res) {
                     </a>`
     }).join('');
     elContainer.querySelectorAll('img').forEach(elImg => {
-        elImg.onerror = () => { onImgError(elImg) }
+        elImg.onerror = () => { onImgError(elImg); elImg.onerror = null; }
     })
 }
 

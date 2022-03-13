@@ -2,7 +2,7 @@ export const httpService = {
     get,
 }
 
-const BASE_URL = 'http://api.taboola.com'
+const BASE_URL = 'https://api.taboola.com'
 
 function get(endpoint, params, cb) {
     XMLReq(endpoint, 'GET', params, cb)
