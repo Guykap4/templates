@@ -8,12 +8,12 @@ function get(endpoint, params, cb) {
     XMLReq(endpoint, 'GET', params, cb)
 }
 
-function XMLReq(endpoint, method = 'GET', params, cb) {
+function XMLReq(endpoint, method = 'GET', params, cb, body) {
 
     const req = new XMLHttpRequest();
     const urlParams = new URLSearchParams(params).toString();
     const url = `${BASE_URL}/${endpoint}?${urlParams}`
-    // const url = 'make an error'
+    // const url = 'making an error'
     const reqInfo = { data: null, err: null }
 
     req.onreadystatechange = () => {
@@ -28,5 +28,5 @@ function XMLReq(endpoint, method = 'GET', params, cb) {
         cb(reqInfo);
     }
     req.open(method, url);
-    req.send();
+    method === 'GET' ? req.send() : req.send(JSON.stringify(body))
 }

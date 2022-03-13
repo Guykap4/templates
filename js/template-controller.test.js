@@ -1,4 +1,4 @@
-import { mainJS } from './template-controller.js'
+import { mainJs } from './template-controller.js'
 import { jest } from '@jest/globals'
 
 describe('main file testing', () => {
@@ -201,27 +201,29 @@ describe('main file testing', () => {
     }
 
     test('renders 8 widgets when got 8', () => {
-        mainJS.renderTemplates(requestRes);
+        mainJs.renderTemplates(requestRes);
         expect(document.querySelector('.recommendations').childElementCount)
             .toBe(8)
     })
 
     test('renders only 4 widgets when got 4', () => {
-        mainJS.renderTemplates(requestRes4Temps);
+        mainJs.renderTemplates(requestRes4Temps);
         expect(document.querySelector('.recommendations').childElementCount)
             .toBe(4)
     })
 
     test('showing error container when bad request', () => {
-        mainJS.renderTemplates(badRequestRes);
+        mainJs.renderTemplates(badRequestRes);
         expect(document.querySelector('.error-container').style.display)
             .toBe('flex')
     })
 
     test('bad img urls fallback', () => {
-        mainJS.renderTemplates(badRequestRes);
-        const elImgs = document.querySelectorAll('article .img');
-        elImgsUrls = elImgs.map(elImg => elImg.style.backgroundImage);
-        expect(elImgsUrls[3]).toBe()
+        mainJs.renderTemplates(requestRes);
+        const elImgs = document.querySelectorAll('article img');
+        console.log(elImgs);
+        setTimeout(() => {
+            expect(elImgs[2].src).toBe('../assets/imgs/default.jpg')
+        }, 1000)
     })
 })

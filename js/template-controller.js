@@ -1,6 +1,6 @@
 import { templateService } from './services/template-service.js';
 
-export const mainJS = {
+export const mainJs = {
     onInit,
     onGetTemplates,
     renderTemplates,
