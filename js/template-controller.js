@@ -17,7 +17,7 @@ function onInit() {
 }
 
 function onGetTemplates() {
-    templateService.getTamplates(renderTemplates);
+    templateService.getTemplates(renderTemplates);
 }
 
 function renderTemplates(res) {
@@ -29,11 +29,17 @@ function renderTemplates(res) {
     document.querySelector('.error-container').style.display = 'none'
     const templates = res.data.list
     const elContainer = document.querySelector('.recommendations');
-    elContainer.innerHTML = templates.map((temp) => {
-        return `<a href="${temp.url}" target="_blank">
+
+    // maybe rell?
+    // request status
+    // oneMouseEnter
+    
+    let htmlStr = ''
+    templates.map((temp) => {
+        htmlStr += `<a href="${temp.url}" target="_blank">
                     <article class="recommendation">
                         <div>
-                            <img src="${temp.thumbnail[0].url}">
+                            <img onerror="() => this.onerror = null; this.src='assets/imgs/default.jpg'" src="${temp.thumbnail[0].url}">
                             </div>
                             <div class="info">
                                 <span>${temp.name}</span>
@@ -42,10 +48,8 @@ function renderTemplates(res) {
                         </div>
                         </article>
                     </a>`
-    }).join('');
-    elContainer.querySelectorAll('img').forEach(elImg => {
-        elImg.onerror = () => { elImg.onerror = null; elImg.src = "assets/imgs/default.jpg" }
-    })
+    });
+    elContainer.innerHTML = htmlStr;
 }
 
 function renderError() {
