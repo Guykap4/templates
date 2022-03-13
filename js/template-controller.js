@@ -28,11 +28,12 @@ function renderTemplates(res) {
     }
     document.querySelector('.error-container').style.display = 'none'
     const templates = res.data.list
-    document.querySelector('.recommendations').innerHTML = templates.map((temp) => {
+    const elContainer = document.querySelector('.recommendations');
+    elContainer.innerHTML = templates.map((temp) => {
         return `<a href="${temp.url}" target="_blank">
                     <article class="recommendation">
                         <div>
-                            <div class="img" style="background-image: url(${temp.thumbnail[0].url}), url(../../assets/imgs/default.jpg)">
+                            <img src="${temp.thumbnail[0].url}">
                             </div>
                             <div class="info">
                                 <span>${temp.name}</span>
@@ -42,6 +43,9 @@ function renderTemplates(res) {
                         </article>
                     </a>`
     }).join('');
+    elContainer.querySelectorAll('img').forEach(elImg => {
+        elImg.onerror = () => { onImgError(elImg) }
+    })
 }
 
 function renderError() {
@@ -49,4 +53,8 @@ function renderError() {
     const elBtn = elErrContainer.querySelector('button');
     elBtn.onclick = onGetTemplates;
     elErrContainer.style.display = 'flex'
+}
+
+function onImgError(elImg) {
+    elImg.src = "../assets/imgs/default.jpg"
 }
