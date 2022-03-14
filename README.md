@@ -20,7 +20,7 @@ Everyday is a learning day!
 ## Installation
 
 To run this project, use any version of live server
-ran by any ied.
+ran by any ide.
 
 To run its test file, install it locally using npm:
 
