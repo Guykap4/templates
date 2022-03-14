@@ -196,7 +196,7 @@ describe('main file testing', () => {
         }
     }
 
-    test('cb onSuccess is called call succesfull', done => {
+    test('cb onSuccess is called when call succesfull', done => {
         const mockOnSuccess = jest.fn(() => { })
         function onSuccess() {
             mockOnSuccess();

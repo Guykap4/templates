@@ -23,7 +23,7 @@ function XMLReq(endpoint, method = 'GET', params, cbs, body) {
             if (req.status === 200) {
                 reqInfo.data = JSON.parse(req.responseText);
                 cbs.onSuccess(reqInfo);
-            } else if (new RegExp(/4\d\d/).test(req.status)) {
+            } else if (new RegExp(/(4|5)\d\d/).test(req.status)) {
                 console.log(`error in ${method} to ${url}`);
                 reqInfo.err = req.statusText;
                 cbs.onFail(reqInfo)

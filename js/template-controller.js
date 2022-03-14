@@ -45,7 +45,7 @@ function renderTemplates(res) {
     elContainer.innerHTML = htmlStr;
 
     // optional - register users article prefs
-    // assignArticleMouseEv();
+    assignArticleMouseEv();
 }
 
 function renderError() {
@@ -57,6 +57,7 @@ function renderError() {
 
 function assignArticleMouseEv() {
     let timeoutId;
+
     document.querySelectorAll('.recommendations article').forEach(template => {
         template.onmouseenter = () => {
             timeoutId = setTimeout(() => {
