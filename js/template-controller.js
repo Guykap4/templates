@@ -28,7 +28,8 @@ function renderTemplates(res) {
 
     let htmlStr = ''
     templates.map((temp) => {
-        const categories = temp.categories[0];
+        const categories = temp.categories?.[0] || null;
+        console.log(categories);
         htmlStr += `<a href="${temp.url}" target="_blank">
                     <article data-categories="${categories}" class="recommendation">
                         <div>

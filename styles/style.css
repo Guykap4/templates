@@ -86,7 +86,7 @@ article {
 
 @media (min-width: 480px) {
     article {
-        height: 300px;
+        height: unset;
     }
 }
 
@@ -106,7 +106,7 @@ article img {
 
 .info {
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
     gap: 8px;
     font-size: 14px;
     color: rgba(0, 0, 0, 0.87);
@@ -130,8 +130,13 @@ a:hover article .info span:nth-of-type(1) {
     text-decoration: underline;
 }
 
+.info span:nth-of-type(1) {
+    max-height: 52px;
+    overflow: hidden;
+}
+
 .info span:nth-of-type(2)::after {
-    content: '| Ad';
+    content: "| Ad";
 }
 
 .error-container {
@@ -145,10 +150,10 @@ a:hover article .info span:nth-of-type(1) {
 
 .error-container button {
     border: none;
-    background-color: #154C91;
+    background-color: #154c91;
     padding: 5px 10px;
     border-radius: 5px;
-    color: #FFF;
+    color: #fff;
     font-family: unify-sans;
 }
 

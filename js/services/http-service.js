@@ -16,8 +16,6 @@ function XMLReq(endpoint, method = 'GET', params, cbs, body) {
     // const url = 'making an error'
     const reqInfo = { data: null, err: null }
 
-    console.log(url);
-
     req.onreadystatechange = () => {
         if (req.readyState === XMLHttpRequest.DONE) {
             if (req.status === 200) {
