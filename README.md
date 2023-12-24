@@ -7,8 +7,6 @@ based on Taboola's API.
 
 I tried to write this project efficiently and clean, refactoring my code where I found it to be lackluster.
 
-Everyday is a learning day!
-
 ## Tech Stack
 
 - Vanilla JS
